@@ -10,4 +10,4 @@
 5 Медиазапросы
 
 _____________________________________________________________________________________
-Ссылка на сайт: https://github.com/Drobishev/mesto/index.html
+Ссылка на сайт: https://drobishev.github.io/mesto//index.html
