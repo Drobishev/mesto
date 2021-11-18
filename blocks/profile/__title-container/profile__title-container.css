@@ -1,0 +1,12 @@
+.profile__title-container{
+    display: flex;
+    align-items: baseline;
+}
+
+@media (max-width: 768px){
+    .profile__title-container{
+        justify-content: center;
+        padding-top: 22px;
+        position: relative;
+    }
+}

@@ -1,0 +1,23 @@
+.pop-up__sambit-buttom{
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    height: 50px;
+    background-color: black;
+    font-family: "Inter", Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #FFFFFF;
+
+}
+
+@media (max-width: 768px){
+    .pop-up__sambit-buttom{
+        height: 46px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+}
