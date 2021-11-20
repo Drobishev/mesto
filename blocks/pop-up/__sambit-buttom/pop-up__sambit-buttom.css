@@ -11,7 +11,15 @@
     line-height: 22px;
     text-align: center;
     color: #FFFFFF;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: 1s ease;
+    outline: none;
+}
 
+.pop-up__sambit-buttom:hover{
+    opacity: 0.8;
 }
 
 @media (max-width: 768px){

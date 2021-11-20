@@ -3,7 +3,7 @@
     align-items: baseline;
 }
 
-@media (max-width: 768px){
+@media (max-width: 780px){
     .profile__title-container{
         justify-content: center;
         padding-top: 22px;

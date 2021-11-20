@@ -14,7 +14,7 @@
 }
 
 
-@media (max-width: 768px){
+@media (max-width: 780px){
     .profile__title{
         line-height: 33px;
         font-size: 27px;

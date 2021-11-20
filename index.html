@@ -13,8 +13,7 @@
   <body class="root">    
     <div class="page">
       <header class="header">
-        <a href="#" target="_blank"><img class="header__logo" src="./images/Vector.svg" alt="логотип">
-        </a>        
+        <img class="header__logo" src="./images/Vector.svg" alt="логотип">
       </header>          
   
       <main class="content">
@@ -24,13 +23,13 @@
                 <div class="profile__container">
                       <div class="profile__title-container">
                           <h1 class="profile__title">Жак-Ив Кусто</h1>
-                          <button class="profile__edit-button"></button>
+                          <button class="profile__edit-button" type="button" aria-label="Редактировать профиль"></button>
                       </div>
                       <p class="profile__subtitle">Исследователь океана</p>
                 </div>
 
               </div>
-              <button class="profile__add-button"></button>
+              <button class="profile__add-button" type="button" aria-label="Добавить фото"></button>
           </section>
           <section class="elements">
             
@@ -38,42 +37,42 @@
               <img class="element__image" src="./images/Karachaevsk.png" alt="Карачаевск">
               <div class="element__description">
                 <h2 class="element__title">Карачаевск</h2>
-                <button class="element__like"></button>
+                <button class="element__like" type="button" aria-label="Нравится"></button>
               </div>
             </div>
             <div class="element">
               <img class="element__image" src="./images/Elbrus.png" alt="Эльбрус">
               <div class="element__description">
                 <h2 class="element__title">Гора Эльбрус</h2>
-                <button class="element__like"></button>
+                <button class="element__like" type="button" aria-label="Нравится"></button>
               </div>
             </div>
             <div class="element">
               <img class="element__image" src="./images/Dombai.png" alt="Домбай">
               <div class="element__description">
                 <h2 class="element__title">Домбай</h2>
-                <button class="element__like"></button>
+                <button class="element__like" type="button" aria-label="Нравится"></button>
               </div>
             </div>
             <div class="element">
               <img class="element__image" src="./images/Karachaevsk.png" alt="Карачаевск">
               <div class="element__description">
                 <h2 class="element__title">Карачаевск</h2>
-                <button class="element__like"></button>
+                <button class="element__like" type="button" aria-label="Нравится"></button>
               </div>
             </div>
             <div class="element">
               <img class="element__image" src="./images/Elbrus.png" alt="Эльбрус">
               <div class="element__description">
                 <h2 class="element__title">Гора Эльбрус</h2>
-                <button class="element__like"></button>
+                <button class="element__like" type="button" aria-label="Нравится"></button>
               </div>
             </div>
             <div class="element">
               <img class="element__image" src="./images/Dombai.png" alt="Домбай">
               <div class="element__description">
                 <h2 class="element__title">Домбай</h2>
-                <button class="element__like"></button>
+                <button class="element__like" type="button" aria-label="Нравится"></button>
               </div>
             </div>
             
@@ -87,11 +86,11 @@
       <div class="pop-up">    
         <div class="pop-up__container">
           <h2 class="pop-up__title">Редактировать профиль</h2>
-          <button class="pop-up__close" type="button"></button>
-          <form class="pop-up__form">
-            <input class="pop-up__input" type="text" name="name" id="name" value=""  placeholder="Иванов Иван">
-            <input class="pop-up__input" type="text" name="about" id="about" value="" placeholder="Космонавт">
-            <button class="pop-up__sambit-buttom" type="submit">Сохранить</button>
+          <button class="pop-up__close" type="button" aria-label="Закрыть окно"></button>
+          <form class="pop-up__form" name="user-info">
+            <input class="pop-up__input" type="text" name="name" id="name" value=""  placeholder="Ваше имя">
+            <input class="pop-up__input" type="text" name="about" id="about" value="" placeholder="О себе">
+            <button class="pop-up__sambit-buttom" type="submit" aria-label="Сохранить">Сохранить</button>
           </form>
         </div>
   

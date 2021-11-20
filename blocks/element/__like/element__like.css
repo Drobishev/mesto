@@ -5,11 +5,13 @@
     background-position: center;
     background-repeat: no-repeat;
     border: none;
+    transition: 1s ease;
+    cursor: pointer;
+    outline: none;
 }
 
 .element__like:hover{
-    opacity: 70%;
-    transition: 0.2s ease;
+    opacity: 0.5;
 }
 
 .element__like:active{

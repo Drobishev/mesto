@@ -1,5 +1,6 @@
 .pop-up__title{
     width: calc(100% - 72px);
+    padding: 0px;
     margin: 0px;
     margin-top: 34px;
     font-family: "Inter", Arial, Helvetica, sans-serif;

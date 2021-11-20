@@ -8,6 +8,13 @@
     position: absolute;
     top: -40px;
     right: -40px;
+    cursor: pointer;
+    transition: 1s ease;
+    outline: none;
+}
+
+.pop-up__close:hover{
+    opacity: 0.6;
 }
 
 @media (max-width: 768px){
@@ -16,5 +23,6 @@
         height: 20px;
         right: 0px;
         top: -36px;
+        background-image: url(../../../images/Close-Icon-mobile.svg);
     }
 }

@@ -1,7 +1,8 @@
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profilePopup = document.querySelector('.pop-up');
 const profileClosePopup = document.querySelector('.pop-up__close');
-const profileSumbitPopup = document.querySelector('.pop-up__sambit-buttom');
+let profileformElement = document.querySelector(".pop-up__form");
+
 
 const profileName = document.querySelector('.profile__title');
 const profileAbout = document.querySelector('.profile__subtitle');
@@ -28,5 +29,5 @@ function saveProfilePopup(evt){
 
 profileEditButton.addEventListener('click', openProfilePopup);
 profileClosePopup.addEventListener('click', closeProfilePopup);
-profileSumbitPopup.addEventListener('click', saveProfilePopup);
+profileformElement.addEventListener('submit', saveProfilePopup);
 
