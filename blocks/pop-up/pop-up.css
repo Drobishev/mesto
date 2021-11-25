@@ -7,8 +7,6 @@
     visibility: hidden;
     opacity: 0;
     transition: visibility 0.5s, opacity 0.5s linear;
-    justify-content: center;
-    align-items: center;
     position: fixed;
     top: 0px;
     left: 0px;
