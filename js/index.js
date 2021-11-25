@@ -4,7 +4,6 @@ const profilePopup = document.querySelector('.pop-up_profile');
 const profileClosePopup = profilePopup.querySelector('.pop-up__close');
 let profileformElement = profilePopup.querySelector(".pop-up__form");
 
-
 const profileName = document.querySelector('.profile__title');
 const profileAbout = document.querySelector('.profile__subtitle');
 
@@ -45,7 +44,29 @@ const inputScrCard = addCardsPopup.querySelector(`#scr-images`);
 const template = document.querySelector(".template-card");
 const card = document.querySelector(`.elements`);
 
-console.log(addCardsPopup);
+// переменные zoom
+const popupZoom = document.querySelector(`.pop-up_zoom`);
+const closeZoomButton = popupZoom.querySelector(`.pop-up__close`);
+const popupZoomImage = popupZoom.querySelector(`.pop-up__image-zoom`);
+const popupZoomTitle = popupZoom.querySelector(`.pop-up__title-zoom`);
+
+
+// функция открытия pop-up zoom
+function openPopupZoom(){
+    popupZoom.classList.add('pop-up_opened');
+}
+
+// функция закрытия pop-up zoom
+function closePopupZoom(){
+    popupZoom.classList.remove('pop-up_opened');
+}
+// функция заполнения zoom
+function addPopupZoom(evt) {
+    popupZoomImage.src = evt.target.src;
+    popupZoomImage.alt = evt.target.alt;
+    popupZoomTitle.textContent = evt.target.alt;
+    openPopupZoom();
+  }
 
 // функция открытия pop-up добавления мест
 function openAddCardsPopup(){
@@ -56,11 +77,11 @@ function closeAddCardsPopup(){
     addCardsPopup.classList.remove('pop-up_opened');
 }
 
-closeCardsPopup.addEventListener('click', closeAddCardsPopup); // закрытие
+closeCardsPopup.addEventListener('click', closeAddCardsPopup); // закрытие pop-up добавления мест
+addCardsButton.addEventListener('click', openAddCardsPopup); // открытие pop-up добавления мест
+closeZoomButton.addEventListener('click', closePopupZoom); // закрытие pop-up zoom
 
-addCardsButton.addEventListener('click', openAddCardsPopup); // открытие
-
-// заполнение карточек
+// заполнение карточек мест
 const createElementDomNode = (item) => {
     const elementTemplate = template.content.querySelector(".element").cloneNode(true);
     
@@ -75,7 +96,13 @@ const createElementDomNode = (item) => {
     
     elementLike.addEventListener('click', (evt) => {
         evt.target.classList.toggle('element__like_active')
-      });
+    });
+
+    elementDeleteButton.addEventListener('click', (evt) => {
+        evt.target.closest('.element').remove()
+    });
+
+    elementImage.addEventListener('click', addPopupZoom);
 
     return elementTemplate;
 }
@@ -90,8 +117,9 @@ function saveAddCardsPopup(evt){
     closeAddCardsPopup();
 }
 
-cardsPopupForm.addEventListener('submit', saveAddCardsPopup);// отправка
-
+cardsPopupForm.addEventListener('submit', saveAddCardsPopup);// отправка pop-up добавления мест
+  
+// добавления карточек мест из базы
 const result = initialCards.map((item) => {
     return createElementDomNode(item);
   }); 
