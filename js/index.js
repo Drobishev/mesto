@@ -34,26 +34,65 @@ profileClosePopup.addEventListener('click', closeProfilePopup); // кнопка 
 profileformElement.addEventListener('submit', saveProfilePopup); // отправка
 
 // переменные pop-up добавления мест
-const AddCardsButton = document.querySelector('.profile__add-button');
-const AddCardsPopup = document.querySelector('.pop-up_add-card');
-const CloseCardsPopup = AddCardsPopup.querySelector('.pop-up__close');
-let CardsPopupForm = AddCardsPopup.querySelector(".pop-up__form");
+const addCardsButton = document.querySelector('.profile__add-button');
+const addCardsPopup = document.querySelector('.pop-up_add-card');
+const closeCardsPopup = addCardsPopup.querySelector('.pop-up__close');
+const cardsPopupForm = addCardsPopup.querySelector(`.pop-up__form`);
+
+const inputTitleCard = addCardsPopup.querySelector(`#title-place`);
+const inputScrCard = addCardsPopup.querySelector(`#scr-images`);
+
+const template = document.querySelector(".template-card");
+const card = document.querySelector(`.elements`);
+
+console.log(addCardsPopup);
 
 // функция открытия pop-up добавления мест
 function openAddCardsPopup(){
-    AddCardsPopup.classList.add('pop-up_opened');
+    addCardsPopup.classList.add('pop-up_opened');
 }
 // функия закрытия pop-up добавления мест
 function closeAddCardsPopup(){
-    AddCardsPopup.classList.remove('pop-up_opened');
-}
-// функция сохранения pop-up добавления мест
-function saveAddCardsPopup(evt){
-    evt.preventDefault();    
-    closeProfilePopup();
+    addCardsPopup.classList.remove('pop-up_opened');
 }
 
-// обработчики pop-up добавления мест
-AddCardsButton.addEventListener('click', openAddCardsPopup); // открытие
-CloseCardsPopup.addEventListener('click', closeAddCardsPopup); // закрытие
-CardsPopupForm.addEventListener('submit', saveAddCardsPopup); // отправка
+closeCardsPopup.addEventListener('click', closeAddCardsPopup); // закрытие
+
+addCardsButton.addEventListener('click', openAddCardsPopup); // открытие
+
+// заполнение карточек
+const createElementDomNode = (item) => {
+    const elementTemplate = template.content.querySelector(".element").cloneNode(true);
+    
+    const elementDeleteButton = elementTemplate.querySelector(".element__delete-button");
+    const elementImage = elementTemplate.querySelector(".element__image");
+    const elementLike = elementTemplate.querySelector(".element__like");
+    const elementTitle = elementTemplate.querySelector(".element__title");
+    
+    elementTitle.textContent = item.name;
+    elementImage.src = item.link;
+    elementImage.alt = item.name;
+    
+    elementLike.addEventListener('click', (evt) => {
+        evt.target.classList.toggle('element__like_active')
+      });
+
+    return elementTemplate;
+}
+
+// функция сохранения pop-up добавления мест
+function saveAddCardsPopup(evt){
+    evt.preventDefault();
+    const userCardElement = createElementDomNode({name: inputTitleCard.value, link: inputScrCard.value});
+      card.prepend(userCardElement);
+      inputTitleCard.value = "";
+      inputScrCard.value = "";
+    closeAddCardsPopup();
+}
+
+cardsPopupForm.addEventListener('submit', saveAddCardsPopup);// отправка
+
+const result = initialCards.map((item) => {
+    return createElementDomNode(item);
+  }); 
+  card.append(...result);

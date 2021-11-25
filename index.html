@@ -32,50 +32,6 @@
               <button class="profile__add-button" type="button" aria-label="Добавить фото"></button>
           </section>
           <section class="elements">
-            
-            <div class="element">
-              <img class="element__image" src="./images/Karachaevsk.png" alt="Карачаевск">
-              <div class="element__description">
-                <h2 class="element__title">Карачаевск</h2>
-                <button class="element__like" type="button" aria-label="Нравится"></button>
-              </div>
-            </div>
-            <div class="element">
-              <img class="element__image" src="./images/Elbrus.png" alt="Эльбрус">
-              <div class="element__description">
-                <h2 class="element__title">Гора Эльбрус</h2>
-                <button class="element__like" type="button" aria-label="Нравится"></button>
-              </div>
-            </div>
-            <div class="element">
-              <img class="element__image" src="./images/Dombai.png" alt="Домбай">
-              <div class="element__description">
-                <h2 class="element__title">Домбай</h2>
-                <button class="element__like" type="button" aria-label="Нравится"></button>
-              </div>
-            </div>
-            <div class="element">
-              <img class="element__image" src="./images/Karachaevsk.png" alt="Карачаевск">
-              <div class="element__description">
-                <h2 class="element__title">Карачаевск</h2>
-                <button class="element__like" type="button" aria-label="Нравится"></button>
-              </div>
-            </div>
-            <div class="element">
-              <img class="element__image" src="./images/Elbrus.png" alt="Эльбрус">
-              <div class="element__description">
-                <h2 class="element__title">Гора Эльбрус</h2>
-                <button class="element__like" type="button" aria-label="Нравится"></button>
-              </div>
-            </div>
-            <div class="element">
-              <img class="element__image" src="./images/Dombai.png" alt="Домбай">
-              <div class="element__description">
-                <h2 class="element__title">Домбай</h2>
-                <button class="element__like" type="button" aria-label="Нравится"></button>
-              </div>
-            </div>
-            
           </section>          
 
       </main>
@@ -101,8 +57,8 @@
           <h2 class="pop-up__title">Новое место</h2>
           <button class="pop-up__close" type="button" aria-label="Закрыть окно"></button>
           <form class="pop-up__form" name="push-images">
-            <input class="pop-up__input" type="text" name="name" id="title-place" value=""  placeholder="Название места">
-            <input class="pop-up__input" type="url" name="about" id="scr-images" value="">
+            <input class="pop-up__input" type="text" name="name" id="title-place" value=""  placeholder="Название">
+            <input class="pop-up__input" type="url" name="about" id="scr-images" value="" placeholder="Ссылка на картинку">
             <button class="pop-up__sambit-buttom" type="submit" aria-label="Сохранить">Сохранить</button>
           </form>
         </div>
@@ -116,10 +72,21 @@
           <h3 class="pop-up__title">Эльбрус</h3>     
         </div>
       </div>
+
+      <template class="template-card">
+        <div class="element">
+          <button class="element__delete-button" type="button" aria-label="Удалить"></button>
+          <img class="element__image" src="" alt="">
+          <div class="element__description">
+            <h2 class="element__title"></h2>
+            <button class="element__like" type="button" aria-label="Нравится"></button>
+          </div>
+        </div>  
+      </template>
       
       
     </div>
-    
+    <script src="./js/cards.js"></script>
     <script src="./js/index.js"></script>
   </body>
 
