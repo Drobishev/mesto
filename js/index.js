@@ -2,35 +2,13 @@
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profilePopup = document.querySelector('.pop-up_profile');
 const profileClosePopup = profilePopup.querySelector('.pop-up__close');
-let profileformElement = profilePopup.querySelector(".pop-up__form");
+const profileformElement = profilePopup.querySelector(".pop-up__form");
 
 const profileName = document.querySelector('.profile__title');
 const profileAbout = document.querySelector('.profile__subtitle');
 
 const profileInputName = document.querySelector('#name');
 const profileInputAbout = document.querySelector('#about');
-
-// функция открытия редактирования профиля
-function openProfilePopup(){
-    profilePopup.classList.add('pop-up_opened');
-    profileInputName.value = profileName.textContent; 
-    profileInputAbout.value = profileAbout.textContent;
-}
-//  функция закрытия редактирования профиля
-function closeProfilePopup(){
-    profilePopup.classList.remove('pop-up_opened');
-}
-// функция сохранения изменений профиля и закрытия
-function saveProfilePopup(evt){
-    evt.preventDefault();
-    profileName.textContent = profileInputName.value;   
-    profileAbout.textContent = profileInputAbout.value;
-    closeProfilePopup();
-}
-// обработчики pop-up редактирования профиля
-profileEditButton.addEventListener('click', openProfilePopup); // кнопка открытия профиля
-profileClosePopup.addEventListener('click', closeProfilePopup); // кнопка закрытия профиля
-profileformElement.addEventListener('submit', saveProfilePopup); // отправка
 
 // переменные pop-up добавления мест
 const addCardsButton = document.querySelector('.profile__add-button');
@@ -50,36 +28,61 @@ const closeZoomButton = popupZoom.querySelector(`.pop-up__close`);
 const popupZoomImage = popupZoom.querySelector(`.pop-up__image-zoom`);
 const popupZoomTitle = popupZoom.querySelector(`.pop-up__title-zoom`);
 
-
-// функция открытия pop-up zoom
-function openPopupZoom(){
-    popupZoom.classList.add('pop-up_opened');
+// функция открытия pop-up
+function openPopup(popup){
+    popup.classList.add('pop-up_opened');
 }
 
-// функция закрытия pop-up zoom
-function closePopupZoom(){
-    popupZoom.classList.remove('pop-up_opened');
+// функция закрытия pop-up
+function closePopup(popup){
+    popup.classList.remove('pop-up_opened');
 }
+
+// функция сохранения изменений профиля и закрытия
+function saveProfilePopup(evt){
+    evt.preventDefault();
+    profileName.textContent = profileInputName.value;   
+    profileAbout.textContent = profileInputAbout.value;
+    closePopup(profilePopup);
+}
+
+// обработчики pop-up редактирования профиля
+profileEditButton.addEventListener('click', () => {
+    openPopup(profilePopup)
+    profileInputName.value = profileName.textContent; 
+    profileInputAbout.value = profileAbout.textContent;
+});
+
+// закрытия профиля
+profileClosePopup.addEventListener('click',  () => {
+    closePopup(profilePopup)
+});
+
+// отправка профиля
+profileformElement.addEventListener('submit', saveProfilePopup);
+
 // функция заполнения zoom
 function addPopupZoom(evt) {
     popupZoomImage.src = evt.target.src;
     popupZoomImage.alt = evt.target.alt;
     popupZoomTitle.textContent = evt.target.alt;
-    openPopupZoom();
-  }
-
-// функция открытия pop-up добавления мест
-function openAddCardsPopup(){
-    addCardsPopup.classList.add('pop-up_opened');
-}
-// функия закрытия pop-up добавления мест
-function closeAddCardsPopup(){
-    addCardsPopup.classList.remove('pop-up_opened');
+    openPopup(popupZoom);
 }
 
-closeCardsPopup.addEventListener('click', closeAddCardsPopup); // закрытие pop-up добавления мест
-addCardsButton.addEventListener('click', openAddCardsPopup); // открытие pop-up добавления мест
-closeZoomButton.addEventListener('click', closePopupZoom); // закрытие pop-up zoom
+// закрытие pop-up добавления мест
+closeCardsPopup.addEventListener('click', () => {
+    closePopup(addCardsPopup)
+}); 
+
+// открытие pop-up добавления мест
+addCardsButton.addEventListener('click',  () => {
+    openPopup(addCardsPopup)
+}); 
+
+// закрытие pop-up zoom
+closeZoomButton.addEventListener('click',  () => {
+    closePopup(popupZoom)
+});  
 
 // заполнение карточек мест
 const createElementDomNode = (item) => {
@@ -114,10 +117,11 @@ function saveAddCardsPopup(evt){
       card.prepend(userCardElement);
       inputTitleCard.value = "";
       inputScrCard.value = "";
-    closeAddCardsPopup();
+      closePopup(addCardsPopup);
 }
 
-cardsPopupForm.addEventListener('submit', saveAddCardsPopup);// отправка pop-up добавления мест
+// отправка pop-up добавления мест
+cardsPopupForm.addEventListener('submit', saveAddCardsPopup);
   
 // добавления карточек мест из базы
 const result = initialCards.map((item) => {
