@@ -1,3 +1,5 @@
+// массив из всех pop-up
+const popupList = Array.from(document.querySelectorAll('.pop-up'));
 // вводим переменные для pop-up редактирование профиля
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profilePopup = document.querySelector('.pop-up_profile');
@@ -31,11 +33,13 @@ const popupZoomTitle = popupZoom.querySelector(`.pop-up__title-zoom`);
 // функция открытия pop-up
 function openPopup(popup){
     popup.classList.add('pop-up_opened');
+    document.addEventListener('keydown', (evt) => closePopupOfEsc(popup, evt));
 }
 
 // функция закрытия pop-up
 function closePopup(popup){
     popup.classList.remove('pop-up_opened');
+    document.removeEventListener('keydown', (evt) => closePopupOfEsc(popup, evt));
 }
 
 // функция сохранения изменений профиля и закрытия
@@ -77,32 +81,54 @@ closeCardsPopup.addEventListener('click', () => {
 // открытие pop-up добавления мест
 addCardsButton.addEventListener('click',  () => {
     openPopup(addCardsPopup)
+    
 }); 
 
 // закрытие pop-up zoom
 closeZoomButton.addEventListener('click',  () => {
     closePopup(popupZoom)
-});  
+});
+
+
+//функция закрытия pop-up попапа при нажатии кнопки ESC
+function closePopupOfEsc(popup, evt) { 
+    if (evt.key === 'Escape') { 
+        closePopup(popup);
+    }
+}
+//функция закрытия pop-up при клике на Overlow
+function closePopupOfClick(evt) {
+    if (evt.target === evt.currentTarget) {//если цель события = элемент на котором слушатель
+        closePopup(evt.currentTarget);//вызываем функцию закрытия pop-up на котором слушатель
+    }
+};
+
+// обработчик всех pop-up при клике на Overlow
+popupList.forEach((popup) => {
+    popup.addEventListener('click', closePopupOfClick)
+});
+
+
 
 // заполнение карточек мест
-const createElementDomNode = (item) => {
+function createElementDomNode(item) {
     const elementTemplate = template.content.querySelector(".element").cloneNode(true);
-    
+
     const elementDeleteButton = elementTemplate.querySelector(".element__delete-button");
     const elementImage = elementTemplate.querySelector(".element__image");
     const elementLike = elementTemplate.querySelector(".element__like");
     const elementTitle = elementTemplate.querySelector(".element__title");
-    
+
     elementTitle.textContent = item.name;
     elementImage.src = item.link;
     elementImage.alt = item.name;
-    
+
     elementLike.addEventListener('click', (evt) => {
-        evt.target.classList.toggle('element__like_active')
+        evt.target.classList.toggle('element__like_active');
     });
 
     elementDeleteButton.addEventListener('click', (evt) => {
-        evt.target.closest('.element').remove()
+        evt.target.closest('.element').remove();
     });
 
     elementImage.addEventListener('click', addPopupZoom);
