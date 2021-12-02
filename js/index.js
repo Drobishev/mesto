@@ -1,5 +1,7 @@
 // массив из всех pop-up
 const popupList = Array.from(document.querySelectorAll('.pop-up'));
+// 
+const closeButtonList = document.querySelectorAll('.pop-up__close');
 // вводим переменные для pop-up редактирование профиля
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profilePopup = document.querySelector('.pop-up_profile');
@@ -57,11 +59,6 @@ profileEditButton.addEventListener('click', () => {
     profileInputAbout.value = profileAbout.textContent;
 });
 
-// закрытия профиля
-profileClosePopup.addEventListener('click',  () => {
-    closePopup(profilePopup)
-});
-
 // отправка профиля
 profileformElement.addEventListener('submit', saveProfilePopup);
 
@@ -73,22 +70,17 @@ function addPopupZoom(evt) {
     openPopup(popupZoom);
 }
 
-// закрытие pop-up добавления мест
-closeCardsPopup.addEventListener('click', () => {
-    closePopup(addCardsPopup)
-}); 
-
 // открытие pop-up добавления мест
 addCardsButton.addEventListener('click',  () => {
-    openPopup(addCardsPopup)
-    
-}); 
-
-// закрытие pop-up zoom
-closeZoomButton.addEventListener('click',  () => {
-    closePopup(popupZoom)
+    openPopup(addCardsPopup)    
 });
 
+// закрытие pop-up нажатием на крестик
+closeButtonList.forEach((closeButton) => {
+    closeButton.addEventListener('click', (evt) => {
+        closePopup(evt.target.closest('.pop-up'));
+    });
+});
 
 //функция закрытия pop-up попапа при нажатии кнопки ESC
 function closePopupOfEsc(popup, evt) { 
