@@ -86,7 +86,9 @@ function addPopupZoom(evt) {
 // открытие pop-up добавления мест
 addCardsButton.addEventListener('click',  () => {
     openPopup(addCardsPopup);
-    resetForm(addCardsPopup, conf)
+    inputTitleCard.value = "";
+    inputScrCard.value = "";
+    resetForm(addCardsPopup, conf);
 });
 
 // закрытие pop-up нажатием на крестик
