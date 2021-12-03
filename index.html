@@ -44,8 +44,18 @@
           <h2 class="pop-up__title">Редактировать профиль</h2>
           <button class="pop-up__close" type="button" aria-label="Закрыть окно"></button>
           <form class="pop-up__form" name="user-info">
-            <input class="pop-up__input" type="text" name="name" id="name" value=""  placeholder="Ваше имя">
-            <input class="pop-up__input" type="text" name="about" id="about" value="" placeholder="О себе">
+            <label class="pop-up__label">
+              <input class="pop-up__input" type="text" name="name"
+               id="name" value=""  placeholder="Ваше имя" required minlength="2"
+              maxlength="40">
+              <span id="name-error" class="name-error pop-up__input-error"></span>
+            </label>
+            <label class="pop-up__label">
+              <input class="pop-up__input" type="text" name="about"
+               id="about" value="" placeholder="О себе" required minlength="2"
+               maxlength="200">
+              <span id="about-error" class="about-error pop-up__input-error"></span>
+            </label>
             <button class="pop-up__sambit-buttom" type="submit" aria-label="Сохранить">Сохранить</button>
           </form>
         </div>
@@ -57,8 +67,15 @@
           <h2 class="pop-up__title">Новое место</h2>
           <button class="pop-up__close" type="button" aria-label="Закрыть окно"></button>
           <form class="pop-up__form" name="push-images">
-            <input class="pop-up__input" type="text" name="name" id="title-place" value=""  placeholder="Название">
-            <input class="pop-up__input" type="url" name="about" id="scr-images" value="" placeholder="Ссылка на картинку">
+            <label class="pop-up__label">
+              <input class="pop-up__input" type="text" name="name" id="title-place" value=""  placeholder="Название" required minlength="2"
+              maxlength="30">
+              <span id="title-place-error" class="title-place-error pop-up__input-error"></span>
+            </label>
+            <label class="pop-up__label">
+              <input class="pop-up__input" type="url" name="about" id="scr-images" value="" placeholder="Ссылка на картинку">
+              <span id="scr-images-error" class="scr-images-error pop-up__input-error"></span>
+            </label>
             <button class="pop-up__sambit-buttom" type="submit" aria-label="Сохранить">Сохранить</button>
           </form>
         </div>
@@ -86,6 +103,7 @@
       
     </div>
     <script src="./js/cards.js"></script>
+    <script src="./js/validate.js"></script>
     <script src="./js/index.js"></script>
   </body>
 

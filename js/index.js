@@ -2,6 +2,9 @@
 const popupList = Array.from(document.querySelectorAll('.pop-up'));
 // 
 const closeButtonList = document.querySelectorAll('.pop-up__close');
+
+const popupOpened = document.querySelector('.pop-up_opened');
+
 // вводим переменные для pop-up редактирование профиля
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profilePopup = document.querySelector('.pop-up_profile');
@@ -32,10 +35,18 @@ const closeZoomButton = popupZoom.querySelector(`.pop-up__close`);
 const popupZoomImage = popupZoom.querySelector(`.pop-up__image-zoom`);
 const popupZoomTitle = popupZoom.querySelector(`.pop-up__title-zoom`);
 
+const conf = {
+  formSelector: '.pop-up__form',
+  inputSelector: '.pop-up__input',  
+  inactiveButtonClass: 'pop-up__sambit-buttom_inactive',
+  inputErrorClass: 'pop-up__input_type_error',
+  errorClass: 'pop-up__input-error'
+}; 
+
 // функция открытия pop-up
-function openPopup(popup){
-    popup.classList.add('pop-up_opened');
-    document.addEventListener('keydown', (evt) => closePopupOfEsc(popup, evt));
+function openPopup(popup){  
+  popup.classList.add('pop-up_opened');
+  document.addEventListener('keydown', (evt) => closePopupOfEsc(popup, evt)); 
 }
 
 // функция закрытия pop-up
@@ -52,11 +63,13 @@ function saveProfilePopup(evt){
     closePopup(profilePopup);
 }
 
+
 // обработчики pop-up редактирования профиля
 profileEditButton.addEventListener('click', () => {
     openPopup(profilePopup)
     profileInputName.value = profileName.textContent; 
     profileInputAbout.value = profileAbout.textContent;
+    resetForm(profilePopup, conf)
 });
 
 // отправка профиля
@@ -72,20 +85,22 @@ function addPopupZoom(evt) {
 
 // открытие pop-up добавления мест
 addCardsButton.addEventListener('click',  () => {
-    openPopup(addCardsPopup)    
+    openPopup(addCardsPopup);
+    resetForm(addCardsPopup, conf)
 });
 
 // закрытие pop-up нажатием на крестик
 closeButtonList.forEach((closeButton) => {
     closeButton.addEventListener('click', (evt) => {
-        closePopup(evt.target.closest('.pop-up'));
+      closePopup(evt.target.closest('.pop-up'));
+
     });
 });
 
 //функция закрытия pop-up попапа при нажатии кнопки ESC
 function closePopupOfEsc(popup, evt) { 
     if (evt.key === 'Escape') { 
-        closePopup(popup);
+        closePopup(popup);        
     }
 }
 //функция закрытия pop-up при клике на Overlow
@@ -146,3 +161,5 @@ const result = initialCards.map((item) => {
     return createElementDomNode(item);
   }); 
   card.append(...result);
+
+ 
