@@ -1,28 +1,18 @@
-// массив из всех pop-up
-const popupList = Array.from(document.querySelectorAll('.pop-up'));
-// 
-const closeButtonList = document.querySelectorAll('.pop-up__close');
-
-const popupOpened = document.querySelector('.pop-up_opened');
-
+const popups = document.querySelectorAll('.pop-up')
 // вводим переменные для pop-up редактирование профиля
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profilePopup = document.querySelector('.pop-up_profile');
-const profileClosePopup = profilePopup.querySelector('.pop-up__close');
 const profileformElement = profilePopup.querySelector(".pop-up__form");
-
 const profileName = document.querySelector('.profile__title');
 const profileAbout = document.querySelector('.profile__subtitle');
-
 const profileInputName = document.querySelector('#name');
 const profileInputAbout = document.querySelector('#about');
 
 // переменные pop-up добавления мест
 const addCardsButton = document.querySelector('.profile__add-button');
 const addCardsPopup = document.querySelector('.pop-up_add-card');
-const closeCardsPopup = addCardsPopup.querySelector('.pop-up__close');
 const cardsPopupForm = addCardsPopup.querySelector(`.pop-up__form`);
-
+const submitButtonCards = addCardsPopup.querySelector(`.pop-up__sambit-buttom`);
 const inputTitleCard = addCardsPopup.querySelector(`#title-place`);
 const inputScrCard = addCardsPopup.querySelector(`#scr-images`);
 
@@ -31,12 +21,12 @@ const card = document.querySelector(`.elements`);
 
 // переменные zoom
 const popupZoom = document.querySelector(`.pop-up_zoom`);
-const closeZoomButton = popupZoom.querySelector(`.pop-up__close`);
 const popupZoomImage = popupZoom.querySelector(`.pop-up__image-zoom`);
 const popupZoomTitle = popupZoom.querySelector(`.pop-up__title-zoom`);
 
 const conf = {
   formSelector: '.pop-up__form',
+//   submitButtonSelector: '.pop-up__sambit-buttom',
   inputSelector: '.pop-up__input',  
   inactiveButtonClass: 'pop-up__sambit-buttom_inactive',
   inputErrorClass: 'pop-up__input_type_error',
@@ -46,13 +36,13 @@ const conf = {
 // функция открытия pop-up
 function openPopup(popup){  
   popup.classList.add('pop-up_opened');
-  document.addEventListener('keydown', (evt) => closePopupOfEsc(popup, evt)); 
+  document.addEventListener('keydown', closePopupOfEsc); 
 }
 
 // функция закрытия pop-up
 function closePopup(popup){
     popup.classList.remove('pop-up_opened');
-    document.removeEventListener('keydown', (evt) => closePopupOfEsc(popup, evt));
+    document.removeEventListener('keydown', closePopupOfEsc);
 }
 
 // функция сохранения изменений профиля и закрытия
@@ -69,7 +59,8 @@ profileEditButton.addEventListener('click', () => {
     openPopup(profilePopup)
     profileInputName.value = profileName.textContent; 
     profileInputAbout.value = profileAbout.textContent;
-    resetForm(profilePopup, conf)
+    resetForm(profilePopup, conf);
+    
 });
 
 // отправка профиля
@@ -89,40 +80,34 @@ addCardsButton.addEventListener('click',  () => {
     inputTitleCard.value = "";
     inputScrCard.value = "";
     resetForm(addCardsPopup, conf);
-});
-
-// закрытие pop-up нажатием на крестик
-closeButtonList.forEach((closeButton) => {
-    closeButton.addEventListener('click', (evt) => {
-      closePopup(evt.target.closest('.pop-up'));
-
-    });
+    // деактивирую кнопку только для добавления мест, тк на видео в задании в попапе профиля она активна,
+    // но у меня при первом открытие перед заполнением она все равно неактивна?!
+    submitButtonCards.classList.add('pop-up__sambit-buttom_inactive');  
 });
 
 //функция закрытия pop-up попапа при нажатии кнопки ESC
-function closePopupOfEsc(popup, evt) { 
+function closePopupOfEsc(evt) { 
     if (evt.key === 'Escape') { 
-        closePopup(popup);        
+        const openedPopup = document.querySelector('.pop-up_opened')
+        closePopup(openedPopup); 
     }
 }
-//функция закрытия pop-up при клике на Overlow
-function closePopupOfClick(evt) {
-    if (evt.target === evt.currentTarget) {//если цель события = элемент на котором слушатель
-        closePopup(evt.currentTarget);//вызываем функцию закрытия pop-up на котором слушатель
-    }
-};
 
-// обработчик всех pop-up при клике на Overlow
-popupList.forEach((popup) => {
-    popup.addEventListener('click', closePopupOfClick)
+// Закрытие pop-up при нажатие на крестик и Overlow
+popups.forEach((popup) => {
+    popup.addEventListener('click', (evt) => {
+        if (evt.target.classList.contains('pop-up_opened')) {
+            closePopup(popup)
+        }
+        if (evt.target.classList.contains('pop-up__close')) {
+          closePopup(popup)
+        }
+    })
 });
-
-
 
 // заполнение карточек мест
 function createElementDomNode(item) {
     const elementTemplate = template.content.querySelector(".element").cloneNode(true);
-
     const elementDeleteButton = elementTemplate.querySelector(".element__delete-button");
     const elementImage = elementTemplate.querySelector(".element__image");
     const elementLike = elementTemplate.querySelector(".element__like");
@@ -163,5 +148,3 @@ const result = initialCards.map((item) => {
     return createElementDomNode(item);
   }); 
   card.append(...result);
-
- 
