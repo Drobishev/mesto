@@ -104,10 +104,7 @@ function resetForm(popup, conf) {
       } = conf
   const form = popup.querySelector(formSelector);
   // const submit= form.querySelector(submitButtonSelector); 
-  // submit.classList.add(inactiveButtonClass);
-  // закоментил этот момент, тк точно не понял на видео в задании в форме попапа профиля кнопка активна,
-  // и я ее деактивировал только для добавления мест отдельно
-  // хотя все равно у меня при первом открытии попапа профиля кнопка не активна
+  // submit.classList.add(inactiveButtonClass);  
   const inputs = form.querySelectorAll(inputSelector);
   inputs.forEach((input) => hideInputError(form, input, conf));  
   };

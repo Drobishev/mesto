@@ -82,7 +82,8 @@ addCardsButton.addEventListener('click',  () => {
     resetForm(addCardsPopup, conf);
     // деактивирую кнопку только для добавления мест, тк на видео в задании в попапе профиля она активна,
     // но у меня при первом открытие перед заполнением она все равно неактивна?!
-    submitButtonCards.classList.add('pop-up__sambit-buttom_inactive');  
+    submitButtonCards.classList.add('pop-up__sambit-buttom_inactive');
+    submitButtonCards.disabled = true;
 });
 
 //функция закрытия pop-up попапа при нажатии кнопки ESC
